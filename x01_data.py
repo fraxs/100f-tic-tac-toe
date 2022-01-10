@@ -4,7 +4,9 @@
 Create a reliable method for storing and retrieving data for the game.
 """
 
-def read(square,board):
+
+
+def read(board, square):
   """
   This will do a lookup to find out what is in a particular square
   inputs: 
@@ -18,6 +20,16 @@ def read(square,board):
   the str value corresponding to the content of the square being checked
   None if the square is empty
   """
+  square -= 1
+  if board[square] == "X":
+    return "X"
+  if board[square] == "O":
+    return "O"
+  if board[square] == 0:
+    return None
+
+
+
   return None
 
 def write(square,board,player):
@@ -34,8 +46,13 @@ def write(square,board,player):
   empty.  If the square is not empty, it should not change the gameboard and
   should return the original, unchanged gameboard data
   """
-  
-  return None
+  square -= 1
+  if board[square] == 0:
+    board.pop(square)#removes the 0 at the index given
+    board.insert(square,player)#inserts X or O at the given index
+    return board
+  else:
+    return board
 
 def mainRead():
   board = [ 0, 'X', 0, 'X', 'O', 'O', 0 , 0, 0]
@@ -45,10 +62,10 @@ def mainRead():
 
 def mainWrite():
   board = [ 0,0,0,0,0,0,0,0,0,0]
-  assert write(1,board,'X') == [ 'X',0,0,0,0,0,0,0,0,0]
-  assert write(5,board,'O') == [ 'X',0,0,0,'O',0,0,0,0,0]
+  assert write(1,board,'X') == ['X',0,0,0,0,0,0,0,0,0]
+  assert write(5,board,'O') == ['X',0,0,0,'O',0,0,0,0,0]
   #next command should not do anything because square #5 is already occupied by an 'O'
-  assert write(5,board,'X') == [ 'X',0,0,0,'O',0,0,0,0,0]
+  assert write(5,board,'X') == ['X',0,0,0,'O',0,0,0,0,0]
  
   
   
