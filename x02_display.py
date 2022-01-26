@@ -27,4 +27,5 @@ def main():
   assert displayString(board) == "X - X \nO O - \n- O X"
 
 if __name__ == "__main__":
-  main()
+  board = [ 'O' , 0 , 0 , 'X' , 'O' , 0 , 0 , 0 , 'X'] 
+  print(displayString(board))
